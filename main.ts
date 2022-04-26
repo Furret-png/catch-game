@@ -120,6 +120,7 @@ basic.forever(function () {
 input.onGesture(Gesture.Shake, function () {
     if (restart == 0) {
         score = 0
+        gameOver=1
         charPos = 2
         life = 3
         ramping = 1000
