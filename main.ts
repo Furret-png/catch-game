@@ -7,7 +7,7 @@ input.onButtonPressed(Button.A, function () {
         }
         led.unplot(charPos + 1, 4)
     } 
-    /// start 
+    /// start
     else if (start==0) {
         lvlSelect = lvlSelect + 1
         if (lvlSelect > 3) {
