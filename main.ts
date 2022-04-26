@@ -6,10 +6,13 @@ input.onButtonPressed(Button.A, function () {
             charPos = 0
         }
         led.unplot(charPos + 1, 4)
-    } else if (start==0) {
-            basic.clearScreen()
-            ramping = 2000 / challengeLvl
-            start=1
+    } 
+    /// start 
+    else if (start==0) {
+        lvlSelect = lvlSelect + 1
+        if (lvlSelect > 3) {
+            lvlSelect = 1
+      }
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -21,14 +24,15 @@ input.onButtonPressed(Button.B, function () {
         led.unplot(charPos - 1, 4)
     }
 })
+/// choose level
 input.onButtonPressed(Button.AB, function () {
     if(start==0) {
-        lvlSelect=lvlSelect+1
-        if(lvlSelect>3) {
-            lvlSelect=1
+        basic.clearScreen()
+        ramping = 2000 / challengeLvl
+        start = 1
         }
-    }
 })
+/// define the level of challenge based on the level
 basic.forever(function () {
     if (lvlSelect==1) {
         challengeLvl=1.9
@@ -38,6 +42,7 @@ basic.forever(function () {
         challengeLvl=2.1
     }
 })
+/// show challenge level at start
 basic.forever(function () {
     if (start==0) {
         basic.showNumber(lvlSelect)
@@ -45,7 +50,6 @@ basic.forever(function () {
 })
 /// defining of variables and setting of brightness
 let lvlSelect = 1
-/// challnegeLvl 2.1 works nicely
 let challengeLvl = 2
 let start = 0
 let score = 0
@@ -117,6 +121,7 @@ basic.forever(function () {
         }
     }
 })
+/// restart
 input.onGesture(Gesture.Shake, function () {
     if (restart == 0) {
         score = 0
