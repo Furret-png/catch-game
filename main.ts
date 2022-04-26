@@ -32,7 +32,7 @@ input.onButtonPressed(Button.AB, function () {
         start = 1
         }
 })
-/// define the level of challenge based on the level
+/// helps define ramping, shows challenge level at start, flashing lights at game over, and score showing
 basic.forever(function () {
     if (lvlSelect==1) {
         challengeLvl=1.9
@@ -41,11 +41,25 @@ basic.forever(function () {
     } else if(lvlSelect==3) {
         challengeLvl=2.1
     }
-})
-/// show challenge level at start
-basic.forever(function () {
-    if (start==0) {
+    if (start == 0) {
         basic.showNumber(lvlSelect)
+    }
+    if (life < 1 && bright >= 0) {
+        gameOver = 0
+        led.setBrightness(bright)
+        bright = bright - 20
+        led.toggleAll()
+        pause(100)
+    }
+    if (life < 1 && bright <= 0 && thisIsScore == 1) {
+        pause(20)
+        basic.clearScreen()
+        led.setBrightness(255)
+        basic.showNumber(score)
+        pause(5000)
+        thisIsScore = 0
+        basic.clearScreen()
+        restart = 0
     }
 })
 /// defining of variables and setting of brightness
@@ -63,29 +77,7 @@ let thisIsScore = 1
 let gameOver = 1
 let restart = 1
 led.setBrightness(bright)
-/// game over
-basic.forever(function () {
-    if (life < 1 && bright >= 0) {
-        gameOver = 0
-        led.setBrightness(bright)
-        bright = bright - 20
-        led.toggleAll()
-        pause(100)
-    }
-})
 /// score showing
-basic.forever(function () {
-    if (life < 1 && bright <= 0 && thisIsScore == 1) {
-        pause(20)
-        basic.clearScreen()
-        led.setBrightness(255)
-        basic.showNumber(score)
-        pause(5000)
-        thisIsScore = 0
-        basic.clearScreen()
-        restart = 0
-    }
-})
 /// drawing of character
 basic.forever(function () {
     if (gameOver == 1 &&start==1) {
