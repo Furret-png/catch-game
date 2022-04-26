@@ -1,15 +1,19 @@
 /// move left or right with button press
 input.onButtonPressed(Button.A, function () {
-    if (gameOver == 1) {
+    if (gameOver == 1 && start == 1) {
         charPos += -1
         if (charPos < 0) {
             charPos = 0
         }
         led.unplot(charPos + 1, 4)
+    } else if (start==0) {
+            basic.clearScreen()
+            ramping = 2000 / challengeLvl
+            start=1
     }
 })
 input.onButtonPressed(Button.B, function () {
-    if (gameOver == 1) {
+    if (gameOver == 1 && start==1) {
         charPos += 1
         if (charPos > 4) {
             charPos = 4
@@ -17,16 +21,39 @@ input.onButtonPressed(Button.B, function () {
         led.unplot(charPos - 1, 4)
     }
 })
+input.onButtonPressed(Button.AB, function () {
+    if(start==0) {
+        lvlSelect=lvlSelect+1
+        if(lvlSelect>3) {
+            lvlSelect=1
+        }
+    }
+})
+basic.forever(function () {
+    if (lvlSelect==1) {
+        challengeLvl=1.9
+    } else if(lvlSelect==2) {
+        challengeLvl=2
+    } else if(lvlSelect==3) {
+        challengeLvl=2.1
+    }
+})
+basic.forever(function () {
+    if (start==0) {
+        basic.showNumber(lvlSelect)
+    }
+})
 /// defining of variables and setting of brightness
 let lvlSelect = 1
 /// challnegeLvl 2.1 works nicely
 let challengeLvl = 2
+let start = 0
 let score = 0
 let charPos = 2
 let sprPosX
 let sprPosY
 let life = 3
-let ramping = 2000 / challengeLvl
+let ramping = 1000
 let bright = 255
 let thisIsScore = 1
 let gameOver = 1
@@ -57,13 +84,13 @@ basic.forever(function () {
 })
 /// drawing of character
 basic.forever(function () {
-    if (gameOver == 1) {
+    if (gameOver == 1 &&start==1) {
         led.plot(charPos, 4)
     }
 })
 /// drawing of coin, score giving/life taking, and difficulty ramping
 basic.forever(function () {
-    if (life > 0) {
+    if (life > 0 && start ==1) {
         basic.pause(ramping)
         sprPosX = randint(0, 4)
         sprPosY = 0
@@ -98,7 +125,8 @@ input.onGesture(Gesture.Shake, function () {
         ramping = 1000
         bright = 255
         thisIsScore = 1
-        gameOver = 1
+        basic.clearScreen()
         restart = 1
+        start =0
     }
 })
