@@ -37,10 +37,13 @@ basic.forever(function () {
     /// defines speed of falling object based on selected difficulty
     if (lvlSelect == 1) {
         challengeLvl = 1.96
+        scoreMod = 0.75001
     } else if (lvlSelect == 2) {
         challengeLvl = 2.04
+        scoreMod = 1
     } else if (lvlSelect == 3) {
         challengeLvl = 2.14
+        scoreMod = 1.3
     }
     /// shows the selected challenge level before playing
     if (start == 0) {
@@ -59,7 +62,7 @@ basic.forever(function () {
         pause(20)
         basic.clearScreen()
         led.setBrightness(255)
-        basic.showNumber(score)
+        basic.showNumber(Math.round(score*scoreMod))
         pause(5000)
         thisIsScore = 0
         basic.clearScreen()
@@ -84,6 +87,7 @@ let bright = 255
 let thisIsScore = 1
 let gameOver = 1
 let restart = 1
+let scoreMod=1
 led.setBrightness(bright)
 
 /// drawing of coin, score giving/life taking, and difficulty ramping
