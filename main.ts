@@ -1,11 +1,11 @@
 /// move left or right with button press
 input.onButtonPressed(Button.A, function () {
     if (gameOver == 1 && start == 1) {
+        led.unplot(charPos,4)
         charPos += -1
         if (charPos < 0) {
             charPos = 0
         }
-        led.unplot(charPos + 1, 4)
     }
     /// start
     else if (start == 0) {
@@ -17,11 +17,11 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.B, function () {
     if (gameOver == 1 && start == 1) {
+        led.unplot(charPos,4)
         charPos += 1
         if (charPos > 4) {
             charPos = 4
         }
-        led.unplot(charPos - 1, 4)
     }
 })
 /// choose level
