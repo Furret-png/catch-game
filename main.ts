@@ -34,7 +34,7 @@ input.onButtonPressed(Button.AB, function () {
 })
 /// everything that needs to be in a forever loop without pauses
 basic.forever(function () {
-    /// defines speed of falling object based on selected difficulty
+    /// defines speed of falling object and the score modification based on selected difficulty
     if (lvlSelect == 1) {
         challengeLvl = 1.96
         scoreMod = 0.75001
