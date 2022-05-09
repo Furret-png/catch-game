@@ -113,9 +113,9 @@ basic.forever(function () {
         led.unplot(sprPosX, sprPosY)
         if (charPos == sprPosX) {
             ramping = ramping / (challengeLvl * 0.52)
-            score = score + 1
+            score += 1
         } else {
-            life = life - 1
+            life += -1
         }
     }
 })
