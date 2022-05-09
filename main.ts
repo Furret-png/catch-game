@@ -9,7 +9,7 @@ input.onButtonPressed(Button.A, function () {
     }
     /// start
     else if (start == 0) {
-        lvlSelect = lvlSelect + 1
+        lvlSelect += 1
         if (lvlSelect > 3) {
             lvlSelect = 1
         }
@@ -53,7 +53,7 @@ basic.forever(function () {
     if (life < 1 && bright >= 0) {
         gameOver = 0
         led.setBrightness(bright)
-        bright = bright - 20
+        bright += -20
         led.toggleAll()
         pause(100)
     }
@@ -99,15 +99,15 @@ basic.forever(function () {
         led.plot(sprPosX, sprPosY)
         basic.pause(ramping)
         led.unplot(sprPosX, sprPosY)
-        sprPosY = sprPosY += 1
+        sprPosY += 1
         led.plot(sprPosX, sprPosY)
         basic.pause(ramping)
         led.unplot(sprPosX, sprPosY)
-        sprPosY = sprPosY += 1
+        sprPosY += 1
         led.plot(sprPosX, sprPosY)
         basic.pause(ramping)
         led.unplot(sprPosX, sprPosY)
-        sprPosY = sprPosY += 1
+        sprPosY += 1
         led.plot(sprPosX, sprPosY)
         basic.pause(ramping / 3)
         led.unplot(sprPosX, sprPosY)
